@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   singleEntry: [
@@ -11,4 +12,12 @@ export default Controller.extend({
     { "label":"Four",   "value":4 },
     { "label":"Five",   "value":5, "color": '#006' }
   ],
+
+  singleEntryJson: computed('singleEntry', function() {
+    return JSON.stringify(this.get('singleEntry'), null, 2);
+  }),
+
+  multiEntryJson: computed('multiEntry', function() {
+    return JSON.stringify(this.get('multiEntry'), null, 2);
+  })
 });

@@ -25,6 +25,8 @@ export default Component.extend({
   noDataMessage:  "No data",
   seedColor:      "#d13f19",
 
+  pieInfoComponent: 'pie-chart/pie-info',
+
   slices:       A(),
   sortedSlices: sort('normalizedSlices', 'sortDef'),
   maxValue:     max('sliceValues'),

@@ -112,3 +112,28 @@ test('it renders with a limited set of multiple data points', function(assert) {
 
   assert.equal(this.$('.pie-chart-slice').length, 3);
 });
+
+test('it renders an alternative pieInfoComponent', function(assert) {
+  this.set('data', [
+    { value: 11, label: 'One' },
+    { value: 22, label: 'Two' },
+    { value: 33, label: 'Three' }
+  ]);
+
+  // triple-x is in the dummy app only
+  this.render(hbs`{{pie-chart slices=data pieInfoComponent='triple-x'}}`);
+
+  let text = this.$().text().trim();
+  assert.ok(text.match(/^XXX Three XXX\s+XXX Two XXX\s+XXX One XXX$/), 'all my Xs');
+});
+
+test('it renders empty legend if pieInfoComponent is false', function(assert) {
+  this.set('data', [
+    { value: 11, label: 'One' },
+    { value: 22, label: 'Two' }
+  ]);
+
+  this.render(hbs`{{pie-chart slices=data pieInfoComponent=false}}`);
+
+  assert.equal(this.$('.pie-chart-legend').text().trim(), '');
+});
